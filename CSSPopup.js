@@ -1,7 +1,7 @@
 
 
 
-OpenLayers.CSSPopup = OpenLayers.Class(OpenLayers.Popup.Framed, {
+OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
     autoSize: true,
     panMapIfOutOfView: true,
     fixedRelativePosition: false,
@@ -258,5 +258,5 @@ OpenLayers.CSSPopup = OpenLayers.Class(OpenLayers.Popup.Framed, {
         }
     },
 
-    CLASS_NAME: "OpenLayers.CSSPopup"
+    CLASS_NAME: "OpenLayers.Popup.CSSFramedCloud"
 });
