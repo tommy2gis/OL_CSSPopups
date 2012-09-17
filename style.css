@@ -1,0 +1,239 @@
+/**
+ * CSS Reset
+ * From Blueprint reset.css
+ * http://blueprintcss.googlecode.com
+ */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
+body {line-height:1.5;}
+table {border-collapse:separate;border-spacing:0;}
+caption, th, td {text-align:left;font-weight:normal;}
+table, td, th {vertical-align:middle;}
+blockquote:before, blockquote:after, q:before, q:after {content:"";}
+blockquote, q {quotes:"" "";}
+a img {border:none;}
+
+/**
+ * Basic Typography
+ */
+body {
+    font-family: "Lucida Grande", Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color: #222;
+    background: #fff;
+    margin: 1em 1.5em;
+}
+pre, code {
+    margin: 1.5em 0;
+    white-space: pre;
+}
+pre, code {
+    font: 1em 'andale mono', 'lucida console', monospace;
+    line-height:1.5;
+}
+a[href] {
+    color: #436976;
+    background-color: transparent;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #003a6b;
+    background-color: transparent;
+    font: 100% 'Lucida Grande', Verdana, Geneva, Lucida, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-top: 0.5em;
+}
+h1 {
+    font-size: 130%;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #fcb100;
+}
+h2 {
+    font-size: 120%;
+    margin-bottom: 0.5em;
+    border-bottom: 1px solid #aaa;
+}
+h3 {
+    font-size: 110%;
+    margin-bottom: 0.5em;
+    text-decoration: underline;
+}
+h4 {
+    font-size: 100%;
+    font-weight: bold;
+}
+h5 {
+    font-size: 100%;
+    font-weight: bold;
+}
+h6 {
+    font-size: 80%;
+    font-weight: bold;
+}
+
+.olControlAttribution {
+    bottom: 5px;
+}
+
+/**
+ * Map Examples Specific
+ */
+.smallmap {
+    width: 512px;
+    height: 256px;
+    border: 1px solid #ccc;
+}
+#tags {
+    display: none;
+}
+
+#docs p {
+    margin-bottom: 0.5em;
+}
+/* mobile specific */
+@media only screen and (max-width: 600px) {
+    body {
+        height           : 100%;
+        margin           : 0;
+        padding          : 0;
+        width            : 100%;
+    }
+    #map {
+        background : #7391ad;
+        width      : 100%;
+    }
+    #map {
+        border : 0;
+        height : 250px;
+    }
+    #title {
+        font-size   : 1.3em;
+        line-height : 2em;
+        text-indent : 1em;
+        margin      : 0;
+        padding     : 0;
+    }
+    #docs {
+        bottom     : 0;
+        padding    : 1em;
+    }
+    #shortdesc {
+        color      : #aaa;
+        font-size  : 0.8em;
+        padding    : 1em;
+        text-align : right;
+    }
+    #tags {
+        display : none;
+    }
+}
+@media only screen and (orientation: landscape) and (max-width: 600px) {
+    #shortdesc {
+       float: right;
+       width: 25%;
+    }
+    #map {
+        width: 70%;
+    }
+    #docs {
+        font-size: 12px;
+    }
+}
+body {
+    -webkit-text-size-adjust: none;
+}
+
+
+
+
+.olPopupContent {
+    overflow: visible !important;
+    padding: 0 !important;
+}
+.olPopup {
+    z-index: 1005 !important;
+}
+.olwidgetPopupContent {
+  /*   background-color: #777777; */
+ 
+	-moz-border-radius:1em;
+	 -webkit-border-radius:1em;
+	  border-radius:1em;
+    border: 2px solid #777777;
+    overflow: visible;
+    padding: 2px;
+    opacity: 0.8;
+}
+.olwidgetPopupCloseBox {
+    background: url("img/popup_icons.png") no-repeat scroll -80px 0 #FFFFFF;
+    cursor: pointer;
+    height: 0;
+    overflow: hidden;
+    padding-top: 16px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 16px;
+}
+.olwidgetPopupCloseBox:hover {
+    background-position: -64px 0;
+}
+.olwidgetPopupPage {
+	-moz-border-radius:1em;
+	 -webkit-border-radius:1em;
+	  border-radius:1em;
+	background: none repeat scroll 0 0 #FFFFFF;
+	overflow: auto;
+	padding: 23px 8px 8px;
+}
+
+.olwidgetPopupPagination {
+    background: none repeat scroll 0 0 #FFFFFF;
+    
+    clear: both;
+    float: right;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.olwidgetPaginationPrevious {
+    background: url("img/popup_icons.png") no-repeat scroll -48px 0 transparent;
+    cursor: pointer;
+    float: left;
+    height: 0;
+    overflow: hidden;
+    padding-top: 16px;
+    width: 16px;
+}
+.olwidgetPaginationPrevious:hover {
+    background-position: -32px 0;
+}
+.olwidgetPaginationCount {
+    float: left;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+.olwidgetPaginationNext {
+    background: url("img/popup_icons.png") no-repeat scroll -16px 0 transparent;
+    cursor: pointer;
+    float: left;
+    height: 0;
+    overflow: hidden;
+    padding-top: 16px;
+    width: 16px;
+}
+.olwidgetPaginationNext:hover {
+    background-position: 0 0;
+}
+.olwidgetClusterList {
+    margin: 0;
+    padding-left: 1em;
+}
+.olwidgetPopupStemTL, .olwidgetPopupStemTR {
+    background: url("img/popup_icons.png") no-repeat scroll -124px 0 transparent;
+}
+.olwidgetPopupStemBL, .olwidgetPopupStemBR {
+    background: url("img/popup_icons.png") no-repeat scroll -96px 0 transparent;
+}
+.olControlAttribution {
+    bottom: 0 !important;
+    right: 0;
+}
+
