@@ -6,15 +6,15 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
     panMapIfOutOfView: true,
     fixedRelativePosition: false,
 
-    positionBlocks: {
+  positionBlocks: {
         "tl": {
             'offset': new OpenLayers.Pixel(44, -6),
             'padding': new OpenLayers.Bounds(5, 14, 5, 5),
             'blocks': [
                 { 
                     className: 'olwidgetPopupStemTL',
-                    size: new OpenLayers.Size(24, 14),
-                    anchor: new OpenLayers.Bounds(null, 0, 32, null),
+                    size: new OpenLayers.Size(20, 20),
+                    anchor: new OpenLayers.Bounds(null, 4, 32, null),
                     position: new OpenLayers.Pixel(0, -28)
                 }
             ]
@@ -25,8 +25,8 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
             'blocks': [
                 { 
                     className: "olwidgetPopupStemTR",
-                    size: new OpenLayers.Size(24, 14),
-                    anchor: new OpenLayers.Bounds(32, 0, null, null),
+                    size: new OpenLayers.Size(20, 20),
+                    anchor: new OpenLayers.Bounds(32, 4, null, null),
                     position: new OpenLayers.Pixel(0, -28)
                 }
             ]
@@ -37,8 +37,8 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
             'blocks': [
                 { 
                     className: "olwidgetPopupStemBL",
-                    size: new OpenLayers.Size(24, 14),
-                    anchor: new OpenLayers.Bounds(null, null, 32, 0),
+                    size: new OpenLayers.Size(20,20),
+                    anchor: new OpenLayers.Bounds(null, null, 32, 4),
                     position: new OpenLayers.Pixel(0, 0)
                 }
             ]
@@ -49,8 +49,8 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
             'blocks': [
                 { 
                     className: "olwidgetPopupStemBR",
-                    size: new OpenLayers.Size(24, 14),
-                    anchor: new OpenLayers.Bounds(32, null, null, 0),
+                    size: new OpenLayers.Size(20, 20),
+                    anchor: new OpenLayers.Bounds(32, null, null, 4),
                     position: new OpenLayers.Pixel(0, 0)
                 }
             ]
@@ -77,24 +77,14 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
     },
 
     /*
-     * 构造popup内部容器。如果内部是一个数组则分页显示
+     * 构造popup内部容器。
      */
     setContentHTML: function(contentHTML) {
         if (contentHTML !== null && contentHTML !== undefined) {
             this.contentHTML = contentHTML;
         }
-
-        var pageHTML;
-        var showPagination;
-        if (this.contentHTML.constructor != Array) {
-            pageHTML = this.contentHTML;
-            showPagination = false;
-        } else {
-            pageHTML = this.contentHTML[this.page];
-            showPagination = this.contentHTML.length > 1;
-        }
-
-        if ((this.contentDiv !== null) && (pageHTML !== null)) {
+  
+        if (this.contentDiv !== null)  {
             var popup = this; 
 
             // 清空旧数据
@@ -102,6 +92,7 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
 
             // 创建内部容器
             var containerDiv = document.createElement("div");
+            containerDiv.innerHTML = this.contentHTML;
             containerDiv.className = 'olwidgetPopupContent';
             this.contentDiv.appendChild(containerDiv);
 
@@ -115,48 +106,6 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
                 };
                 this.contentDiv.appendChild(closeDiv);
             }
-
-            var pageDiv = document.createElement("div");
-            pageDiv.innerHTML = pageHTML;
-            pageDiv.className = "olwidgetPopupPage";
-            containerDiv.appendChild(pageDiv);
-
-            if (showPagination) {
-                // 创建分页控件
-                var paginationDiv = document.createElement("div");
-                paginationDiv.className = "olwidgetPopupPagination";
-                var prev = document.createElement("div");
-                prev.className = "olwidgetPaginationPrevious";
-                prev.innerHTML = "prev";
-                prev.onclick = function(event) {
-                    popup.page = (popup.page - 1 + popup.contentHTML.length) %
-                        popup.contentHTML.length;
-                    popup.setContentHTML();
-                    popup.map.events.triggerEvent("move");
-                };
-
-                var count = document.createElement("div");
-                count.className = "olwidgetPaginationCount";
-                count.innerHTML = (this.page + 1) + this.separator + this.contentHTML.length;
-                var next = document.createElement("div");
-                next.className = "olwidgetPaginationNext";
-                next.innerHTML = "next";
-                next.onclick = function(event) {
-                    popup.page = (popup.page + 1) % popup.contentHTML.length;
-                    popup.setContentHTML();
-                    popup.map.events.triggerEvent("move");
-                };
-
-                paginationDiv.appendChild(prev);
-                paginationDiv.appendChild(count);
-                paginationDiv.appendChild(next);
-                containerDiv.appendChild(paginationDiv);
-
-            }
-            var clearFloat = document.createElement("div");
-            clearFloat.style.clear = "both";
-            containerDiv.appendChild(clearFloat);
-
             if (this.autoSize) {
                 this.registerImageListeners();
                 this.updateSize();
@@ -239,23 +188,9 @@ OpenLayers.Popup.CSSFramedCloud = OpenLayers.Class(OpenLayers.Popup.Framed, {
         }
     },
     updateSize: function() {
-    	//popup是否在地图视图内
-        if (false) {
-            var preparedHTML = "<div class='" + this.contentDisplayClass+ "'>" +
-                this.contentDiv.innerHTML +
-                "</div>";
-
-            var containerElement = document.body;
-            var realSize = OpenLayers.Util.getRenderedDimensions(
-                preparedHTML, null, {
-                    displayClass: this.displayClass,
-                    containerElement: containerElement
-                }
-            );
-            return this.setSize(realSize);
-        } else {
+    	
             return OpenLayers.Popup.prototype.updateSize.apply(this, arguments);
-        }
+    
     },
 
     CLASS_NAME: "OpenLayers.Popup.CSSFramedCloud"
